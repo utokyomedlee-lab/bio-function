@@ -99,3 +99,19 @@ python -m bpl --version
 ```
 
 MIT License — 저작권자 표기와 라이선스 전문을 배포본에 유지하세요.
+
+
+## BAL v0.3 — 다중 구획 시뮬레이션
+
+기존 BPL 패키지에 BAL(Bio-Availability Language) 연구용 모듈이 추가되었습니다.
+BAL v0.3은 DDS 방출, 장 흡수, 간 대사, 혈장·조직 분포, 내성 피드백을
+분리된 ODE 구획으로 계산하고 질량수지 및 시나리오 불확실성을 검증합니다.
+
+```bash
+bal-sim --config examples/bal_multicompartment.json
+python -m unittest discover -s tests -v
+```
+
+수학적 가정과 모델의 제한은 [BAL v0.3 문서](docs/BAL_v0.3_KO.md)를 확인하세요.
+예제 매개변수는 소프트웨어 검증용 가상값이며, 임상적 생체이용률이나 치료
+효과를 예측하는 값이 아닙니다.
