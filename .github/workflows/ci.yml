@@ -1,0 +1,50 @@
+name: BPL continuous integration
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install project
+        run: python -m pip install .
+      - name: Run test suite
+        run: python -m unittest discover -s tests -v
+      - name: Validate example models
+        run: |
+          bpl validate examples/aging_system.bpl
+          bpl validate examples/tissue_repair.bpl
+          bpl interact validate examples/senescence_immune_lysosome.bpl
+          bpl interact run examples/senescence_immune_lysosome.bpl --csv interaction-results.csv
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build distributions
+        run: |
+          python -m pip install --upgrade build twine
+          python -m build
+          python -m twine check dist/*
