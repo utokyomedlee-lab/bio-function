@@ -1,0 +1,17 @@
+BPL 0.3.0 배포 안내
+
+1. Python 3.11 이상을 설치합니다.
+2. PyPI에 공개된 뒤 다음 명령으로 설치합니다.
+   python -m pip install bpl-biosim
+3. 버전을 확인합니다.
+   bpl --version
+4. 내장 예제를 작업 폴더로 내보냅니다.
+   bpl examples --export ./bpl-examples
+5. 기존 ODE 모델을 검사하고 실행합니다.
+   bpl validate ./bpl-examples/aging_system.bpl
+   bpl run ./bpl-examples/aging_system.bpl --csv aging.csv
+6. 반응 네트워크 모델을 검사하고 실행합니다.
+   bpl interact validate ./bpl-examples/senescence_immune_lysosome.bpl
+   bpl interact run ./bpl-examples/senescence_immune_lysosome.bpl --csv interaction.csv
+
+포함된 예제의 생물학적 계수는 모두 시연용 가상값이며 실측값 또는 임상 기준이 아닙니다.
