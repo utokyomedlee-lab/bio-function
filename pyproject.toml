@@ -38,3 +38,9 @@ testpaths = ["tests"]
 
 [tool.setuptools.package-data]
 bpl = ["examples/*.bpl"]
+
+[project.urls]
+Homepage = "https://github.com/utokyomedlee-lab/bio-function"
+Repository = "https://github.com/utokyomedlee-lab/bio-function"
+Documentation = "https://github.com/utokyomedlee-lab/bio-function#readme"
+Issues = "https://github.com/utokyomedlee-lab/bio-function/issues"
