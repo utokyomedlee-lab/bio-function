@@ -1,0 +1,6 @@
+include README.md README_KO.md CHANGELOG.md LICENSE PUBLIC_RELEASE_GUIDE_KO.md
+recursive-include docs *.md
+recursive-include examples *.bpl *.md
+recursive-include bpl/examples *.bpl
+recursive-include tests *.py
+recursive-include .github/workflows *.yml
